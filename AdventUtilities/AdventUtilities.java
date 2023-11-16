@@ -56,24 +56,27 @@ public class AdventUtilities {
 
             directory.mkdir();
 
-            day.createNewFile();
+            if (!day.exists()) {
+                day.createNewFile();
 
-            FileWriter dayFile = new FileWriter(fileName + "/" + fileName + ".java");
+                FileWriter dayFile = new FileWriter(fileName + "/" + fileName + ".java");
 
-            String dayFormat = "package " + fileName + ";\n" +
-                    "import java.util.*;\n" +
-                    "import java.io.IOException;\n" +
-                    "import AdventUtilities.*;\n\n" +
-                    "public class " + fileName + "{\n" +
-                    "\tpublic static void main(String[] args) throws IOException {\n" +
-                    "\t\tArrayList<String> input = AdventUtilities.readLines(\"" + fileName +  ".txt\");\n\t}\n}";
+                String dayFormat = "package " + fileName + ";\n" +
+                        "import java.util.*;\n" +
+                        "import java.io.IOException;\n" +
+                        "import AdventUtilities.*;\n\n" +
+                        "public class " + fileName + "{\n" +
+                        "\tpublic static void main(String[] args) throws IOException {\n" +
+                        "\t\tArrayList<String> input = AdventUtilities.readLines(\"" + fileName +  ".txt\");\n\t}\n}";
 
-            dayFile.write(dayFormat);
+                dayFile.write(dayFormat);
 
-            dayInput.createNewFile();
-            dayTest.createNewFile();
+                dayInput.createNewFile();
+                dayTest.createNewFile();
 
-            dayFile.close();
+                dayFile.close();
+            }
+
         }
     }
 
