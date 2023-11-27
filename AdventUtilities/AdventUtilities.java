@@ -32,13 +32,13 @@ public class AdventUtilities {
         File file = new File(fileName);
         Scanner input = new Scanner(file);
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         while (input.hasNext()) {
-            output += input.next();
+            output.append(input.next());
         }
 
-        return output;
+        return output.toString();
     }
 
     //Creates a folder for each day with a day.java file, an input.txt, and a test.txt.
@@ -67,7 +67,8 @@ public class AdventUtilities {
                         "import AdventUtilities.*;\n\n" +
                         "public class " + fileName + "{\n" +
                         "\tpublic static void main(String[] args) throws IOException {\n" +
-                        "\t\tArrayList<String> input = AdventUtilities.readLines(\"" + fileName +  ".txt\");\n\t}\n}";
+                        "\t\tArrayList<String> input = AdventUtilities.readLines(" +
+                        "\"" + fileName + "/" + fileName  + ".txt\");\n\t}\n}";
 
                 dayFile.write(dayFormat);
 
