@@ -1,4 +1,5 @@
 package AdventUtilities;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,8 +12,7 @@ public class AdventUtilities {
         setup();
     }
 
-
-    //Takes a problem input file name and returns an ArrayList of the file lines.
+    // Takes a problem input file name and returns an ArrayList of the file lines.
     public static ArrayList<String> readLines(String fileName) throws IOException {
         File file = new File(fileName);
         Scanner input = new Scanner(file);
@@ -26,8 +26,9 @@ public class AdventUtilities {
         return output;
     }
 
-    //Reads the characters from the input into one long string, removing any spaces.
-    //Typically you will want to use readLines() instead!
+    // Reads the characters from the input into one long string, removing any
+    // spaces.
+    // Typically you will want to use readLines() instead!
     public static String readCharacters(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         Scanner input = new Scanner(file);
@@ -41,12 +42,14 @@ public class AdventUtilities {
         return output.toString();
     }
 
-    //Creates a folder for each day with a day.java file, an input.txt, and a test.txt.
+    // Creates a folder for each day with a day.java file, an input.txt, and a
+    // test.txt.
     public static void setup() throws IOException {
         int[] daysToCreate = new int[25];
         for (int dayNumber = 1; dayNumber <= daysToCreate.length; dayNumber++) {
             String fileName = "Day";
-            if (dayNumber < 10) fileName += "0";
+            if (dayNumber < 10)
+                fileName += "0";
             fileName += dayNumber;
 
             File day = new File(fileName + "/" + fileName + ".java");
@@ -68,7 +71,7 @@ public class AdventUtilities {
                         "public class " + fileName + "{\n" +
                         "\tpublic static void main(String[] args) throws IOException {\n" +
                         "\t\tArrayList<String> input = AdventUtilities.readLines(" +
-                        "\"" + fileName + "/" + fileName  + ".txt\");\n\t}\n}";
+                        "\"" + fileName + "/" + fileName + ".txt\");\n\t}\n}";
 
                 dayFile.write(dayFormat);
 
@@ -80,6 +83,5 @@ public class AdventUtilities {
 
         }
     }
-
 
 }
