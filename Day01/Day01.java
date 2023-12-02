@@ -12,8 +12,10 @@ public class Day01 {
         int sum = 0;
 
         for (int i = 0; i < input.size() - 1; i++) {
+          
             int calibrationValue = extractCalibrationValue(input.get(i), input.get(i + 1));
             sum += calibrationValue;
+           
             System.out.println(input.get(i) + " + " + input.get(i + 1) + " -> " + calibrationValue);
         }
 
@@ -21,10 +23,12 @@ public class Day01 {
     }
 
     private static int extractCalibrationValue(String line1, String line2) {
+        
         int lastValueLine1 = findLastNumber(line1);
         int firstValueLine2 = findFirstNumber(line2);
 
         int result = lastValueLine1 * 10 + firstValueLine2;
+       
         System.out.println(
                 "Last of Line1: " + lastValueLine1 + ", First of Line2: " + firstValueLine2 + ", Result: " + result);
 
@@ -50,12 +54,14 @@ public class Day01 {
     }
 
     private static int findLastNumber(String line) {
+        
         StringBuilder digits = new StringBuilder();
 
         for (int i = line.length() - 1; i >= 0; i--) {
             char c = line.charAt(i);
             if (Character.isDigit(c)) {
                 digits.insert(0, c);
+           
             } else if (Character.isLetter(c)) {
                 int wordValue = getWordValue(Character.toString(c));
                 if (wordValue != 0) {
