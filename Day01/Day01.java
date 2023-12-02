@@ -6,6 +6,7 @@ import AdventUtilities.AdventUtilities;
 
 public class Day01 {
     public static void main(String[] args) throws IOException {
+        
         ArrayList<String> input = AdventUtilities.readLines("Day01/Day01Test.txt");
 
         int sum = 0;
