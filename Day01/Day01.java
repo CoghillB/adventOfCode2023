@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 
 import AdventUtilities.AdventUtilities;
-import java.io.IOException;
 
 public class Day01 {
     public static void main(String[] args) throws IOException {
