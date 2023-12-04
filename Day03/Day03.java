@@ -4,15 +4,12 @@ import java.io.IOException;
 import AdventUtilities.*;
 
 public class Day03{
-
-public class Main {
-    
-public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 	ArrayList<String> input = AdventUtilities.readLines("Day03/Day03.txt");
 	System.out.println(sumPartNumbers(input));
 }
 
-public static int sumPartNumbers(ArrayList<String> schematic) {
+    public static int sumPartNumbers(ArrayList<String> schematic) {
     int sum = 0;
     int rows = schematic.size();
     int cols = schematic.get(0).length();
@@ -37,6 +34,5 @@ public static int sumPartNumbers(ArrayList<String> schematic) {
         }
     }
     return sum;
-}
-}
+    }
 }
