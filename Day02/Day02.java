@@ -26,9 +26,11 @@ public class Day02 {
 			int minRed = 0, minGreen = 0, minBlue = 0;
 	
 			for (String subset : subsets) {
+
 				String[] words = subset.split(", ");
 				int red = 0, green = 0, blue = 0;
 				for (String word : words) {
+					
 
 					if (word.contains("red")) {
 						red = Integer.parseInt(word.split(" ")[0]);
