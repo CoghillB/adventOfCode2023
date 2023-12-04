@@ -8,3 +8,9 @@ public class Day04{
 		ArrayList<String> input = AdventUtilities.readLines("Day04/Day04.txt");
 	}
 }
+
+public class Day04Part2 {
+	public static void main(String[] args) throws IOException {
+		ArrayList<String> input = AdventUtilities.readLines("Day04/Day04.txt");
+	}
+}
