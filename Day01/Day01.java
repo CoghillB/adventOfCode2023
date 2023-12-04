@@ -12,30 +12,29 @@ import AdventUtilities.AdventUtilities;
 import java.io.IOException;
 
 public class Day01 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        ArrayList<String> input = AdventUtilities.readLines("Day01/Day01Test.txt");
 
-    // ...
+        int sum = 0;
 
-    try {
-        ArrayList<String> input = AdventUtilities.readLines("Day01/Day01.txt");
-
-        // Input the calibration document
-        System.out.println("Enter the calibration document (press Enter twice to finish):");
-        StringBuilder calibrationDocument = new StringBuilder();
-        String line;
-        Scanner scanner = new Scanner(System.in);
-        while (!(line = scanner.nextLine()).isEmpty()) {
-            calibrationDocument.append(line).append("\n");
+        for (int i = 0; i < input.size() - 1; i++) {
+            int calibrationValue = extractCalibrationValue(input.get(i), input.get(i + 1));
+            sum += calibrationValue;
+            System.out.println(input.get(i) + " + " + input.get(i + 1) + " -> " + calibrationValue);
         }
 
-        // Calculate the sum of calibration values
-        int sum = calculateCalibrationSum(calibrationDocument.toString());
-    } catch (IOException e) {
-        e.printStackTrace();
+        System.out.println("Sum of calibration values: " + sum);
     }
 
-    // Display the result
-    System.out.println("The sum of all calibration values is: " + sum);
+    private static int extractCalibrationValue(String line1, String line2) {
+        int lastValueLine1 = findLastNumber(line1);
+        int firstValueLine2 = findFirstNumber(line2);
+
+        int result = lastValueLine1 * 10 + firstValueLine2;
+        System.out.println(
+                "Last of Line1: " + lastValueLine1 + ", First of Line2: " + firstValueLine2 + ", Result: " + result);
+
+        return result;
     }
 
     private static int calculateCalibrationSum(String calibrationDocument) {
@@ -57,31 +56,27 @@ public class Day01 {
         return sum;
     }
 
-    private static int extractCalibrationValue(String line) {
-        // Split the line into words
-        String[] words = line.split("\\s+");
+    private static int findLastNumber(String line) {
+        StringBuilder digits = new StringBuilder();
 
-        // Initialize the value
-        int value = 0;
-
-        // Iterate through each word
-        for (String word : words) {
-            // Extract the real digits from the word
-            int digit = extractDigitFromWord(word);
-
-            // Combine with the existing value
-            value = value * 10 + digit;
+        for (int i = line.length() - 1; i >= 0; i--) {
+            char c = line.charAt(i);
+            if (Character.isDigit(c)) {
+                digits.insert(0, c);
+            } else if (Character.isLetter(c)) {
+                int wordValue = getWordValue(Character.toString(c));
+                if (wordValue != 0) {
+                    digits.insert(0, wordValue);
+                    break; // Stop after finding the last digit
+                }
+            }
         }
 
-        return value;
+        return digits.length() == 1 ? Integer.parseInt(digits.toString()) : 0;
     }
 
-    private static int extractDigitFromWord(String word) {
-        // Convert word to lowercase for case-insensitivity
-        String lowerCaseWord = word.toLowerCase();
-
-        // Check if the word represents a digit
-        switch (lowerCaseWord) {
+    private static int getWordValue(String word) {
+        switch (word.toLowerCase()) {
             case "one":
                 return 1;
             case "two":
